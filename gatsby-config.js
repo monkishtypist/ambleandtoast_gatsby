@@ -32,6 +32,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: contentfulConfig.production.spaceId,
+        accessToken: contentfulConfig.production.accessToken,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-canonical-urls',
       options: {
         siteUrl: config.siteUrl,
