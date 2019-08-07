@@ -5,6 +5,7 @@ import CardList from '../components/CardList'
 import Card from '../components/Card'
 import Helmet from 'react-helmet'
 import Hero from '../components/Hero'
+import HeroImage from '../images/website-logo.png'
 import Container from '../components/Container'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO'
@@ -25,7 +26,7 @@ const Index = ({ data, pageContext }) => {
         </Helmet>
       )}
       {isFirstPage && (
-        <Hero></Hero>
+        <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
       )}
       <Container>
         {isFirstPage ? (
