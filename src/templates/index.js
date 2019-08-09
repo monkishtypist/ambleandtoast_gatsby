@@ -26,7 +26,7 @@ const Index = ({ data, pageContext }) => {
         </Helmet>
       )}
       {isFirstPage && (
-        <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
+        // <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
       )}
       <Container>
         {isFirstPage ? (
