@@ -10,7 +10,12 @@ import PageBody from '../components/PageBody'
 import SEO from '../components/SEO'
 
 const PageTemplate = ({ data }) => {
-  const { title, slug, body } = data.contentfulPage
+  const {
+    title,
+    slug,
+    heroImage,
+    body
+  } = data.contentfulPage
   const postNode = data.contentfulPage
 
   return (
@@ -20,10 +25,10 @@ const PageTemplate = ({ data }) => {
       </Helmet>
       <SEO pagePath={slug} postNode={postNode} pageSEO />
 
-      <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
+      <Hero title={title} image={heroImage} height={'50vh'} />
 
       <Container>
-        <PageTitle>{title}</PageTitle>
+        {/* <PageTitle>{title}</PageTitle> */}
         <PageBody body={body} />
       </Container>
     </Layout>
