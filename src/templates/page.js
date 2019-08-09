@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
 import Layout from '../components/Layout'
+import Hero from '../components/Hero'
 import Container from '../components/Container'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
@@ -18,6 +19,8 @@ const PageTemplate = ({ data }) => {
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
       <SEO pagePath={slug} postNode={postNode} pageSEO />
+
+      <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
 
       <Container>
         <PageTitle>{title}</PageTitle>
@@ -35,6 +38,17 @@ export const query = graphql`
       metaDescription {
         internal {
           content
+        }
+      }
+      heroImage {
+        title
+        fluid(maxWidth: 1800) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+        ogimg: resize(width: 1800) {
+          src
+          width
+          height
         }
       }
       body {
