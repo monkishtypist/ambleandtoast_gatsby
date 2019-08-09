@@ -1,11 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
 import Helmet from 'react-helmet'
-import Hero from '../components/Hero'
-import HeroImage from '../images/website-logo.png'
 import Container from '../components/Container'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO'
@@ -17,6 +16,14 @@ const Index = ({ data, pageContext }) => {
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
 
+  const Container = styled.section`
+    margin: 1em auto 2em;
+    max-width: ${props => props.theme.sizes.maxWidth};
+    padding: 3em 1.5em 2em;
+    flex-grow: 1;
+    width: 100%;
+  `
+
   return (
     <Layout>
       <SEO />
@@ -25,9 +32,6 @@ const Index = ({ data, pageContext }) => {
           <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
         </Helmet>
       )}
-      {/* {isFirstPage && (
-        <Hero title={config.siteTitle} image={HeroImage} height={'50vh'} />
-      )} */}
       <Container>
         {isFirstPage ? (
           <CardList>

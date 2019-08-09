@@ -3,8 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 const Wrapper = styled.div`
-  margin: -2em 0 0 0;
+  margin: 0 auto 2em;
+  max-width: ${props => props.theme.sizes.maxWidthCentered};
   padding: 0 1.5em 2em;
+  flex-grow: 1;
+  width: 100%;
 `
 
 const Box = styled.div`

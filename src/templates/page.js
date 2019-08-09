@@ -5,7 +5,6 @@ import config from '../utils/siteConfig'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
 import Container from '../components/Container'
-import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
 import SEO from '../components/SEO'
 
@@ -28,7 +27,6 @@ const PageTemplate = ({ data }) => {
       <Hero title={title} image={heroImage} height={'50vh'} />
 
       <Container>
-        {/* <PageTitle>{title}</PageTitle> */}
         <PageBody body={body} />
       </Container>
     </Layout>

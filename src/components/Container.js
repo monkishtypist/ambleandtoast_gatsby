@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.section`
-  margin: 0 auto auto;
-  width: 100%;
-  max-width: ${props => props.theme.sizes.maxWidth};
-  padding: 3em 1.5em 2em;
+  margin: 0 auto 2em;
+  max-width: ${props => props.theme.sizes.maxWidthCentered};
+  padding: 0 1.5em;
   flex-grow: 1;
+  width: 100%;
 `
 
 const Container = props => {

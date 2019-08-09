@@ -2,11 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  margin: 0 auto 2em;
-  max-width: ${props => props.theme.sizes.maxWidthCentered};
-  span {
-    margin: 0 0.5rem;
-  }
+  margin: 0 auto 1em;
+  width: 100%;
 `
 
 const Date = styled.p`
@@ -20,9 +17,8 @@ const ReadingTime = styled.p`
 const PostDetails = props => {
   return (
     <Wrapper>
-      <Date>📅 {props.date}</Date>
-      <span>•</span>
-      <ReadingTime>{`⏱️${props.timeToRead} min read `}</ReadingTime>
+      <Date>{props.date}</Date>
+      {/* <ReadingTime>{`${props.timeToRead} min read `}</ReadingTime> */}
     </Wrapper>
   )
 }

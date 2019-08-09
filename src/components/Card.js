@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import PostDetails from './PostDetails'
 
 const Post = styled.li`
   position: relative;
@@ -37,25 +38,19 @@ const Post = styled.li`
   }
 `
 
+const CardBody = styled.div`
+  padding: 1rem;
+`
+
 const Title = styled.h2`
   font-size: 1.5em;
   font-weight: 600;
   text-transform: capitalize;
-  margin: 1rem 1rem 0.5rem 1rem;
-`
-
-const Date = styled.h3`
-  margin: 0 1rem 0.5rem 1rem;
-  color: gray;
-`
-
-const ReadingTime = styled.h4`
-  margin: 0 1rem 1.5rem 1rem;
-  color: gray;
+  margin: 0 auto 0.5rem;
 `
 
 const Excerpt = styled.p`
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 auto 1rem;
   line-height: 1.6;
 `
 
@@ -74,14 +69,18 @@ const Card = ({
     <Post featured={props.featured}>
       <Link to={`/${slug}/`}>
         <Img fluid={heroImage.fluid} backgroundColor={'#eeeeee'} />
-        <Title>{title}</Title>
-        <Date>{publishDate}</Date>
-        <ReadingTime>{timeToRead} min read</ReadingTime>
-        <Excerpt
-          dangerouslySetInnerHTML={{
-            __html: body.childMarkdownRemark.excerpt,
-          }}
-        />
+        <CardBody>
+          <Title>{title}</Title>
+          <PostDetails
+            date={publishDate}
+            timeToRead={timeToRead}
+          />
+          <Excerpt
+            dangerouslySetInnerHTML={{
+              __html: body.childMarkdownRemark.excerpt,
+            }}
+          />
+        </CardBody>
       </Link>
     </Post>
   )
