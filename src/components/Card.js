@@ -5,18 +5,23 @@ import Img from 'gatsby-image'
 import PostDetails from './PostDetails'
 
 const Post = styled.li`
-  position: relative;
   border: 1px solid ${props => props.theme.colors.secondary};
   border-radius: 2px;
+  flex: 0 0 100%;
   margin: 0 0 1em 0;
-  width: 100%;
+  position: relative;
   transition: background 0.2s;
+  width: 100%;
   @media screen and (min-width: ${props => props.theme.responsive.small}) {
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 49%')};
-    margin: 0 0 2vw 0;
+    margin: 0 0 2% 0;
   }
   @media screen and (min-width: ${props => props.theme.responsive.medium}) {
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 32%')};
+    &:nth-child(4n-3),
+    &:nth-child(4n-4) {
+      flex: ${props => (props.featured ? '0 0 100%' : '0 0 66%')};
+    }
   }
   &:hover {
     background: ${props => props.theme.colors.tertiary};
@@ -29,10 +34,14 @@ const Post = styled.li`
     color: ${props => props.theme.colors.base};
     text-decoration: none;
     .gatsby-image-wrapper {
-      height: 0;
-      padding-bottom: 60%;
+      padding: 0;
+      height: 240px;
       @media screen and (min-width: ${props => props.theme.responsive.small}) {
-        padding-bottom: ${props => (props.featured ? '40%' : '60%')};
+        height: 300px;
+        // padding-bottom: ${props => (props.featured ? '40%' : '60%')};
+      }
+      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
+        height: 400px;
       }
     }
   }
@@ -46,7 +55,7 @@ const Title = styled.h2`
   font-size: 1.5em;
   font-weight: 600;
   text-transform: capitalize;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 1rem;
 `
 
 const Excerpt = styled.p`

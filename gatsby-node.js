@@ -13,6 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
         ) {
           edges {
             node {
+              title
               slug
               publishDate
             }

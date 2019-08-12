@@ -17,9 +17,9 @@ const Index = ({ data, pageContext }) => {
   const isFirstPage = currentPage === 1
 
   const Container = styled.section`
-    margin: 1em auto 2em;
+    margin: 0 auto 2rem;
     max-width: ${props => props.theme.sizes.maxWidth};
-    padding: 3em 1.5em 2em;
+    padding: 1.5rem 1.5rem;
     flex-grow: 1;
     width: 100%;
   `
@@ -34,12 +34,16 @@ const Index = ({ data, pageContext }) => {
       )}
       <Container>
         {isFirstPage ? (
-          <CardList>
-            <Card {...featuredPost} featured />
-            {posts.slice(1).map(({ node: post }) => (
-              <Card key={post.id} {...post} />
-            ))}
-          </CardList>
+          <>
+            <CardList featured>
+              <Card {...featuredPost} featured />
+            </CardList>
+            <CardList>
+              {posts.slice(1).map(({ node: post }) => (
+                <Card key={post.id} {...post} />
+              ))}
+            </CardList>
+          </>
         ) : (
           <CardList>
             {posts.map(({ node: post }) => (

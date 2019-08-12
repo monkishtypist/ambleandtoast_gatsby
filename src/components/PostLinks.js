@@ -32,11 +32,35 @@ const Box = styled.div`
 const PreviousLink = styled(Link)`
   margin-right: auto;
   order: 1;
+  span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    transition: max-width .15s linear;
+    vertical-align: bottom;
+  }
+  &:hover span {
+    width: auto;
+    max-width: 200px;
+  }
 `
 
 const NextLink = styled(Link)`
   margin-left: auto;
   order: 2;
+  span {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 0;
+    transition: max-width .15s linear;
+    vertical-align: bottom;
+  }
+  &:hover span {
+    width: auto;
+    max-width: 200px;
+  }
 `
 
 const PostLinks = props => {
@@ -45,11 +69,15 @@ const PostLinks = props => {
       <Box>
         {props.previous && (
           <PreviousLink to={`/${props.previous.slug}/`}>
-            &#8592; Prev Post
+            <span>{props.previous.title}&nbsp;</span>
+            &#8592; Newer Post
           </PreviousLink>
         )}
         {props.next && (
-          <NextLink to={`/${props.next.slug}/`}>Next Post &#8594;</NextLink>
+          <NextLink to={`/${props.next.slug}/`}>
+            Older Post &#8594;
+            <span>&nbsp;{props.next.title}</span>
+          </NextLink>
         )}
       </Box>
     </Wrapper>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
+import { useStaticQuery, Link, graphql } from "gatsby"
 import Helmet from 'react-helmet'
 import favicon from '../images/favicon.png'
 import GlobalStyle from '../styles/global'
@@ -9,6 +10,20 @@ import Menu from '../components/Menu'
 import Footer from '../components/Footer'
 
 const Template = ({ children }) => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            rssMetadata {
+              title
+            }
+          }
+        }
+      }
+    `
+  )
+
   return (
     <div className="siteRoot">
       <Helmet>

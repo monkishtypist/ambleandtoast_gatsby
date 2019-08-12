@@ -43,6 +43,7 @@ const PostTemplate = ({ data, pageContext }) => {
         <PageBody body={body} />
       </Container>
       <PostLinks previous={previous} next={next} />
+      {console.log(pageContext)}
     </Layout>
   )
 }

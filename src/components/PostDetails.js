@@ -8,6 +8,7 @@ const Wrapper = styled.div`
 
 const Date = styled.p`
   display: inline-block;
+  font-size: .8rem;
 `
 
 const ReadingTime = styled.p`
