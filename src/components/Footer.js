@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import logo from '../images/website-logo.png'
 
 const Wrapper = styled.footer`
   display: flex;
@@ -39,6 +40,12 @@ const Item = styled.li`
       color: ${props => props.theme.colors.base};
     }
   }
+  img {
+    &.brand-logo-footer {
+      width: 100px;
+      height: auto;
+    }
+  }
 `
 
 const Footer = () => (
@@ -46,32 +53,17 @@ const Footer = () => (
     <List>
       <Item>
         <a
-          href="https://www.contentful.com/"
-          rel="nofollow noopener noreferrer"
-          target="_blank"
+          href="/"
         >
-          <img
-            src="https://images.ctfassets.net/fo9twyrwpveg/44baP9Gtm8qE2Umm8CQwQk/c43325463d1cb5db2ef97fca0788ea55/PoweredByContentful_LightBackground.svg"
-            style={{ width: '100px' }}
-            alt="Powered by Contentful"
-          />
+          <img src={logo} alt="Logo" className="brand-logo-footer" />
         </a>
       </Item>
       <Item>
         <a
-          href="https://github.com/ryanwiemer/gatsby-starter-gcn"
+          href="https://littlefinchmedia.com"
           target="_blank"
-          rel="noopener noreferrer"
         >
-          gatsby-starter-gcn
-        </a>{' '}
-        by{' '}
-        <a
-          href="https://github.com/ryanwiemer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @ryanwiemer
+          littlefinchmedia.com
         </a>
       </Item>
     </List>

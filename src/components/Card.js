@@ -6,11 +6,11 @@ import PostDetails from './PostDetails'
 
 const Post = styled.li`
   border: 1px solid ${props => props.theme.colors.secondary};
-  border-radius: 2px;
+  border-radius: 0;
   flex: 0 0 100%;
   margin: 0 0 1em 0;
   position: relative;
-  transition: background 0.2s;
+  transition: all 0.2s ease-in-out;
   width: 100%;
   @media screen and (min-width: ${props => props.theme.responsive.small}) {
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 49%')};
@@ -24,7 +24,8 @@ const Post = styled.li`
     }
   }
   &:hover {
-    background: ${props => props.theme.colors.tertiary};
+    /* background: ${props => props.theme.colors.tertiary}; */
+    box-shadow: 0px 0px 12px rgba(0,0,0,.16);
   }
   a {
     display: flex;
@@ -70,7 +71,9 @@ const Card = ({
   publishDate,
   body,
   body: {
-    childMarkdownRemark: { timeToRead },
+    childMarkdownRemark: {
+      timeToRead
+    }
   },
   ...props
 }) => {
