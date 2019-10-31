@@ -190,5 +190,6 @@ module.exports = {
         dataLayerName: "dataLayer",
       },
     },
+    'gatsby-plugin-sass',
   ],
 }

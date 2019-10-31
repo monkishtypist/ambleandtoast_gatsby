@@ -1,6 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'gatsby'
+import styled from 'styled-components'
+import PostLinkStyles from './PostLinks.module.scss'
 
 const Wrapper = styled.div`
   margin: 0 auto 2em;
@@ -14,14 +15,11 @@ const Box = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 100%;
   max-width: ${props => props.theme.sizes.maxWidthCentered};
+  width: 100%;
   a {
     background: ${props => props.theme.colors.base};
-    color: white;
-    padding: 1em;
-    border-radius: 2px;
-    text-decoration: none;
+    color: #fff;
     transition: 0.2s;
     &:hover {
       background: ${props => props.theme.colors.highlight};
@@ -32,35 +30,11 @@ const Box = styled.div`
 const PreviousLink = styled(Link)`
   margin-right: auto;
   order: 1;
-  span {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 0;
-    transition: max-width .15s linear;
-    vertical-align: bottom;
-  }
-  &:hover span {
-    width: auto;
-    max-width: 200px;
-  }
 `
 
 const NextLink = styled(Link)`
   margin-left: auto;
   order: 2;
-  span {
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    max-width: 0;
-    transition: max-width .15s linear;
-    vertical-align: bottom;
-  }
-  &:hover span {
-    width: auto;
-    max-width: 200px;
-  }
 `
 
 const PostLinks = props => {
@@ -68,15 +42,15 @@ const PostLinks = props => {
     <Wrapper>
       <Box>
         {props.previous && (
-          <PreviousLink to={`/${props.previous.slug}/`}>
-            <span>{props.previous.title}&nbsp;</span>
-            &#8592; Newer Post
+          <PreviousLink to={`/${props.previous.slug}/`} className={`${PostLinkStyles.postLink} ${PostLinkStyles.postLinkPrevious}`}>
+            <span className={PostLinkStyles.postLink__arrow}>&#8592;</span>
+            <span className={PostLinkStyles.postLink__description}>{props.previous.title}&nbsp;</span>
           </PreviousLink>
         )}
         {props.next && (
-          <NextLink to={`/${props.next.slug}/`}>
-            Older Post &#8594;
-            <span>&nbsp;{props.next.title}</span>
+          <NextLink to={`/${props.next.slug}/`} className={`${PostLinkStyles.postLink} ${PostLinkStyles.postLinkNext}`}>
+            <span className={PostLinkStyles.postLink__description}>&nbsp;{props.next.title}</span>
+            <span className={PostLinkStyles.postLink__arrow}>&#8594;</span>
           </NextLink>
         )}
       </Box>

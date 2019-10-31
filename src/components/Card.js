@@ -55,6 +55,7 @@ const CardBody = styled.div`
 const Title = styled.h2`
   font-size: 1.5em;
   font-weight: 600;
+  line-height: 1.5;
   text-transform: capitalize;
   margin: 0 auto 1rem;
 `
