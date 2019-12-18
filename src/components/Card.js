@@ -1,16 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
+import { rgba } from 'polished'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import PostDetails from './PostDetails'
 
 const Post = styled.li`
-  border: 1px solid ${props => props.theme.colors.light};
+  border: 1px solid ${props => rgba(props.theme.colors.highlight, .20)};
   border-radius: 0;
   flex: 0 0 100%;
   margin: 0 0 1em 0;
   position: relative;
-  transition: all 0.2s ease-in-out;
+  transform: scale(1);
+  transition: all 0.45s ease;
   width: 100%;
   @media screen and (min-width: ${props => props.theme.responsive.small}) {
     flex: ${props => (props.featured ? '0 0 100%' : '0 0 49%')};
@@ -24,28 +26,29 @@ const Post = styled.li`
     }
   }
   &:hover {
-    /* background: ${props => props.theme.colors.tertiary}; */
-    box-shadow: 0px 0px 12px rgba(0,0,0,.16);
+    box-shadow: 0px 0px 12px ${props => rgba(props.theme.colors.black,.16)};
+    transform: scale(1.005);
   }
 `
 
 const PostLink = styled(Link)`
+  color: ${props => props.theme.colors.dark};
   display: flex;
   flex-flow: column;
   height: 100%;
-  width: 100%;
-  color: ${props => props.theme.colors.dark};
   text-decoration: none;
-  .gatsby-image-wrapper {
-    padding: 0;
-    height: 240px;
-    @media screen and (min-width: ${props => props.theme.responsive.small}) {
-      height: 300px;
-      // padding-bottom: ${props => (props.featured ? '40%' : '60%')};
-    }
-    @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-      height: 400px;
-    }
+  width: 100%;
+`
+
+const PostImage = styled(Img)`
+  height: 240px;
+  padding: 0;
+  @media screen and (min-width: ${props => props.theme.responsive.small}) {
+    height: 300px;
+    // padding-bottom: ${props => (props.featured ? '40%' : '60%')};
+  }
+  @media screen and (min-width: ${props => props.theme.responsive.medium}) {
+    height: 400px;
   }
 `
 
@@ -82,7 +85,7 @@ const Card = ({
   return (
     <Post featured={props.featured}>
       <PostLink to={`/${slug}/`}>
-        <Img fluid={heroImage.fluid} backgroundColor={'#eeeeee'} />
+        <PostImage fluid={heroImage.fluid} backgroundColor={'#eeeeee'} />
         <CardBody>
           <Title>{title}</Title>
           <PostDetails

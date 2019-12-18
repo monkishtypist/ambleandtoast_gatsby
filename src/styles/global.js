@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { lighten } from 'polished'
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -31,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   .siteRoot {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
@@ -58,12 +59,76 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /* Typography */
+  h1, h2, h3 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 1rem 0;
+    text-transform: capitalize;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.25em;
+  }
+  h3 {
+    font-size: 1em;
+  }
+
+  p {
+    line-height: 1.6;
+    margin: 0 0 2em 0;
+  }
+
+  a {
+    transition: 0.25s;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+  strong {
+    font-weight: 600;
+  }
+  em {
+    font-style: italic;
+  }
+
+  ul, ol {
+    margin: 0 0 2em 0;
+  }
   ol, ul, li {
     list-style: none;
+  }
+  li {
+    list-style-position: inside;
+    line-height: 1.25;
+  }
+
+  pre {
+    border-radius: 2px;
+    color: ${props => lighten(.1, props.theme.colors.light)};
+    margin: 0 0 2em 0;
+    background: ${props => props.theme.colors.dark};
+    span {
+      background: inherit !important;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid ${props => props.theme.colors.highlight};
+    margin: 0 0 2em;
+    width: 100%;
   }
 
   blockquote, q {
     quotes: none;
+    font-style: italic;
+    border-left: 4px solid ${props => props.theme.colors.highlight};
+    padding: 0 0 0 0.5em;
   }
 
   blockquote::before, blockquote::after,
@@ -82,7 +147,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: white;
+    background: ${props => props.theme.colors.white};
     line-height: 1;
     font-size: 100%;
     font-variant-ligatures: none;
@@ -116,9 +181,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /* Scrollbar */
   ::-webkit-scrollbar {
-    width: 2px;
-    height: 2px;
+    width: 4px;
+    height: 4px;
   }
   ::-webkit-scrollbar-button {
     width: 0px;

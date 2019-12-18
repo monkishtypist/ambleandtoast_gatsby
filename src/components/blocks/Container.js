@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const ContainerWrapper = styled.div`
+const Div = styled.div`
   flex-grow: 1;
   margin-left: auto;
   margin-right: auto;
@@ -11,7 +11,7 @@ const ContainerWrapper = styled.div`
 `
 
 const Container = props => {
-  return <ContainerWrapper className={props.className}>{props.children}</ContainerWrapper>
+  return <Div className={props.className}>{props.children}</Div>
 }
 
 export default Container

@@ -1,10 +1,10 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { useStaticQuery, Link, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Helmet from 'react-helmet'
 import favicon from '../images/favicon.png'
-import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
+import GlobalStyle from '../styles/global'
 import config from '../utils/siteConfig'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -32,6 +32,7 @@ const Template = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon} />
       </Helmet>
+      <GlobalStyle theme={theme} />
 
       <ThemeProvider theme={theme}>
         <>
@@ -40,7 +41,6 @@ const Template = ({ children }) => {
           <Footer />
         </>
       </ThemeProvider>
-      <GlobalStyle />
     </div>
   )
 }

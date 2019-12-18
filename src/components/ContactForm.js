@@ -9,7 +9,7 @@ import styled from 'styled-components'
 */
 
 const Form = styled.form`
-  max-width: ${props => props.theme.sizes.maxWidthCentered};
+  max-width: ${props => props.theme.container.maxWidthCentered};
   margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
@@ -84,8 +84,8 @@ const Message = styled.textarea`
 `
 
 const Submit = styled.input`
-  background: ${props => props.theme.colors.base} !important;
-  color: white !important;
+  background: ${props => props.theme.colors.dark} !important;
+  color: ${props => props.theme.colors.white} !important;
   cursor: pointer;
   transition: 0.2s;
   &:hover {
@@ -128,7 +128,7 @@ const Button = styled.div`
   border: none;
   outline: none;
   cursor: pointer;
-  color: white;
+  color: ${props => props.theme.colors.white};
   padding: 1em;
   border-radius: 2px;
   text-decoration: none;

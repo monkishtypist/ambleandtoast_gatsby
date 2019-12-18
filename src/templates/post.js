@@ -2,14 +2,23 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
+import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
-import Container from '../components/blocks/Container'
-import PageBody from '../components/PageBody'
+import PostBody from '../components/PostBody'
 import TagList from '../components/TagList'
 import PostLinks from '../components/PostLinks'
 import PostDetails from '../components/PostDetails'
 import SEO from '../components/SEO'
+
+const Container = styled.div`
+  flex-grow: 1;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: ${props => props.theme.container.maxWidthCentered};
+  padding: ${props => props.theme.container.paddingY} ${props => props.theme.container.paddingX};
+  width: 100%;
+`
 
 const PostTemplate = ({ data, pageContext }) => {
   const {
@@ -36,13 +45,10 @@ const PostTemplate = ({ data, pageContext }) => {
 
       <Container>
         {tags && <TagList tags={tags} />}
-        <PostDetails
-          date={publishDate}
-          timeToRead={body.childMarkdownRemark.timeToRead}
-        />
-        <PageBody body={body} />
+        <PostDetails date={publishDate} />
+        <PostBody body={body} />
+        <PostLinks previous={previous} next={next} />
       </Container>
-      <PostLinks previous={previous} next={next} />
       {console.log(pageContext)}
     </Layout>
   )

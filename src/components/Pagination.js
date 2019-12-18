@@ -13,7 +13,7 @@ const PaginationContainer = styled(Container)`
 
 const PaginationLink = styled(Link)`
   background: ${props => props.theme.colors.dark};
-  color: white;
+  color: ${props => props.theme.colors.white};
   padding: 1em;
   border-radius: 2px;
   text-decoration: none;

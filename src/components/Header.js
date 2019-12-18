@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "gatsby"
 import styled from 'styled-components'
 import Container from './blocks/Container'
-import Menu from './Menu'
+import Menu from './menus/MainMenu'
 import logo from '../images/website-logo-white.png'
 
 const Wrapper = styled.header`

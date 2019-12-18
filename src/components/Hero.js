@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const Wrapper = styled.section`
   position: relative;
   min-height: 300px;
-  margin-bottom: 3em;
 `
 const BgImg = styled(Img)`
   position: absolute;
@@ -42,13 +41,13 @@ const Title = styled.h1`
   font-weight: 600;
   position: absolute;
   width: 100%;
-  max-width: ${props => props.theme.sizes.maxWidthCentered};
+  max-width: ${props => props.theme.container.maxWidthCentered};
   padding: 0 1rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  color: white;
+  color: ${props => props.theme.colors.white};
 `
 
 const Hero = props => (
