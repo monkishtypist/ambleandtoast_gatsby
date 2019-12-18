@@ -6,8 +6,6 @@ import PostLinkStyles from './PostLinks.module.scss'
 const Wrapper = styled.div`
   margin: 0 auto 2em;
   max-width: ${props => props.theme.sizes.maxWidthCentered};
-  padding: 0 1.5em 2em;
-  flex-grow: 1;
   width: 100%;
 `
 
