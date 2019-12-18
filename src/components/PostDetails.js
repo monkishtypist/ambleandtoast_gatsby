@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   margin: 0 auto 1em;
+  max-width: ${props => props.theme.sizes.maxWidthCentered};
   width: 100%;
 `
 
@@ -11,15 +12,10 @@ const Date = styled.p`
   font-size: .8rem;
 `
 
-const ReadingTime = styled.p`
-  display: inline-block;
-`
-
 const PostDetails = props => {
   return (
     <Wrapper>
       <Date>{props.date}</Date>
-      {/* <ReadingTime>{`${props.timeToRead} min read `}</ReadingTime> */}
     </Wrapper>
   )
 }
