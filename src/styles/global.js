@@ -103,7 +103,6 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   li {
-    list-style-position: inside;
     line-height: 1.25;
   }
 
