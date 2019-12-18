@@ -5,6 +5,7 @@ import config from '../utils/siteConfig'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
+import Main from '../components/blocks/Main'
 import PostBody from '../components/PostBody'
 import TagList from '../components/TagList'
 import PostLinks from '../components/PostLinks'
@@ -41,14 +42,15 @@ const PostTemplate = ({ data, pageContext }) => {
       </Helmet>
       <SEO pagePath={slug} postNode={postNode} postSEO />
 
-      <Hero title={title} image={heroImage} height={'50vh'} />
-
-      <Container>
-        {tags && <TagList tags={tags} />}
-        <PostDetails date={publishDate} />
-        <PostBody body={body} />
-        <PostLinks previous={previous} next={next} />
-      </Container>
+      <Main>
+        <Hero title={title} image={heroImage} height={'50vh'} />
+        <Container>
+          {tags && <TagList tags={tags} />}
+          <PostDetails date={publishDate} />
+          <PostBody body={body} />
+          <PostLinks previous={previous} next={next} />
+        </Container>
+      </Main>
       {console.log(pageContext)}
     </Layout>
   )
