@@ -164,6 +164,22 @@ module.exports = {
       },
     },
     {
+      resolve: `@gatsby-contrib/gatsby-plugin-elasticlunr-search`,
+      options: {
+        // Fields to index
+        fields: [`title`, `body`, `slug`],
+        // How to resolve each field`s value for a supported node type
+        resolvers: {
+          // For any node of type ContentProduct, list how to resolve the fields` values
+          ContentfulPost: {
+            title: node => node.title,
+            body: (node, getNode) => getNode(node.body___NODE).body,
+            slug: node => node.slug,
+          },
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-nprogress',
       options: {
         color: config.themeColor,

@@ -115,5 +115,39 @@ const GlobalStyle = createGlobalStyle`
       box-shadow: none;
     }
   }
+
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+  ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #282828;
+    border: 0px none #000000;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8EA68D;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: #8EA68D;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-track:hover {
+    background: #f5f5f5;
+  }
+  ::-webkit-scrollbar-track:active {
+    background: #f5f5f5;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 `
 export default GlobalStyle

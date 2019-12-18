@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import PageTitle from '../components/PageTitle'
-import Container from '../components/Container'
+import Container from '../components/blocks/Container'
 import Layout from '../components/Layout'
 
 const Text = styled.p`

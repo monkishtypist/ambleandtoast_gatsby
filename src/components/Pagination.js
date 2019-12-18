@@ -1,34 +1,34 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import Wrapper from './blocks/Section'
+import Container from './blocks/Container'
 
-const Wrapper = styled.div`
-  position: relative;
+const PaginationWrapper = styled(Wrapper)``
+
+const PaginationContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
-  margin: -2em auto 0;
-  width: 100%;
-  max-width: ${props => props.theme.sizes.maxWidth};
-  padding: 0 1.5em 2em;
-  a {
-    background: ${props => props.theme.colors.base};
-    color: white;
-    padding: 1em;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: 0.2s;
-    &:hover {
-      background: ${props => props.theme.colors.highlight};
-    }
+`
+
+const PaginationLink = styled(Link)`
+  background: ${props => props.theme.colors.dark};
+  color: white;
+  padding: 1em;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: 0.2s;
+  &:hover {
+    background: ${props => props.theme.colors.highlight};
   }
 `
 
-const PreviousLink = styled(Link)`
+const PreviousLink = styled(PaginationLink)`
   margin-right: auto;
   order: 1;
 `
 
-const NextLink = styled(Link)`
+const NextLink = styled(PaginationLink)`
   margin-left: auto;
   order: 3;
 `
@@ -60,17 +60,19 @@ class Pagination extends React.Component {
     const nextPageLink = isLast ? null : `${pathPrefix}/${nextPageNum}/`
 
     return (
-      <Wrapper>
-        {!isFirst && (
-          <PreviousLink to={prevPageLink}>&#8592; Prev Page</PreviousLink>
-        )}
-        {!isNotPaginated && (
-          <PageIndicator>
-            {currentPage}/{numPages}
-          </PageIndicator>
-        )}
-        {!isLast && <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>}
-      </Wrapper>
+      <PaginationWrapper>
+        <PaginationContainer>
+          {!isFirst && (
+            <PreviousLink to={prevPageLink}>&#8592; Prev Page</PreviousLink>
+          )}
+          {!isNotPaginated && (
+            <PageIndicator>
+              {currentPage}/{numPages}
+            </PageIndicator>
+          )}
+          {!isLast && <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>}
+        </PaginationContainer>
+      </PaginationWrapper>
     )
   }
 }

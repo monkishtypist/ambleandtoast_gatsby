@@ -9,7 +9,7 @@ import Card from '../components/Card'
 import CardList from '../components/CardList'
 import PageTitle from '../components/PageTitle'
 import Pagination from '../components/Pagination'
-import Container from '../components/Container'
+import Container from '../components/blocks/Container'
 
 const TagTemplate = ({ data, pageContext }) => {
   const posts = orderBy(

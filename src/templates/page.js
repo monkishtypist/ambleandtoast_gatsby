@@ -4,7 +4,8 @@ import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
 import Layout from '../components/Layout'
 import Hero from '../components/Hero'
-import Container from '../components/Container'
+import Main from '../components/blocks/Main'
+import Container from '../components/blocks/Container'
 import PageBody from '../components/PageBody'
 import SEO from '../components/SEO'
 
@@ -23,12 +24,13 @@ const PageTemplate = ({ data }) => {
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
       <SEO pagePath={slug} postNode={postNode} pageSEO />
-
       <Hero title={title} image={heroImage} height={'50vh'} />
 
-      <Container>
-        <PageBody body={body} />
-      </Container>
+      <Main>
+        <Container>
+          <PageBody body={body} />
+        </Container>
+      </Main>
     </Layout>
   )
 }

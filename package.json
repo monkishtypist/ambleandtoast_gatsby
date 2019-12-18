@@ -5,10 +5,11 @@
   "repository": "https://github.com/monkishtypist/ambleandtoast_gatsby",
   "author": "Tim Spinks <tim@ambleandtoast.com>",
   "dependencies": {
+    "@gatsby-contrib/gatsby-plugin-elasticlunr-search": "^2.3.0",
     "babel-plugin-styled-components": "^1.10.6",
     "chalk": "^2.4.2",
     "contentful-import": "^7.5.1",
-    "gatsby": "^2.13.52",
+    "gatsby": "^2.18.13",
     "gatsby-cli": "^2.7.30",
     "gatsby-image": "^2.2.8",
     "gatsby-plugin-canonical-urls": "^2.1.2",

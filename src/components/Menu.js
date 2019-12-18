@@ -1,59 +1,34 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
-import logo from '../images/website-logo-white.png'
 import logoSmallWhite from '../images/trees-white.png'
 
-const Header = styled.header`
-  background: ${props => props.theme.colors.base};
-  width: 100%;
-  padding: 1em 0;
+const MainNav = styled.nav`
+  align-items: center;
+  display: flex;
 `
-const Nav = styled.nav`
+
+const MainMenu = styled.ul`
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
-  max-width: ${props => props.theme.sizes.maxWidth};
-  padding: 0 1.5em;
-  width: 100%;
+  margin-right: -1em;
+`
 
-  .brand-link {
-    display: flex;
+const MainMenuItem = styled.li`
+  flex: 1 0 auto;
+  &:hover {
+    background-image: url(${logoSmallWhite});
   }
-  .brand-logo {
-    max-height: 3.25rem;
-    width: auto;
-  }
+`
 
-  ul {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  li {
-    align-items: center;
-    align-self: stretch;
-    display: flex;
-    margin-left: 1em;
-    &:first-child {
-      position: relative;
-      margin: 0;
-      flex-basis: 100%;
-    }
-    &:hover {
-      background-image: url(${logoSmallWhite});
-    }
-  }
-
-  a {
-    text-decoration: none;
-    color: DarkGray;
-    font-weight: 600;
-    transition: all 0.2s;
-    border-bottom: 2px solid ${props => props.theme.colors.base};
-    &:hover {
-      color: white;
-    }
+const MainMenuLink = styled(Link)`
+  color: ${props => props.theme.colors.white};
+  font-weight: 600;
+  padding: 1em;
+  text-decoration: none;
+  transition: all 0.2s;
+  &:hover {
+    color: ${props => props.theme.colors.highlight};
   }
 `
 
@@ -63,25 +38,20 @@ const activeLinkStyle = {
 
 const Menu = () => {
   return (
-    <Header>
-      <Nav>
-        <Link to="/" activeStyle={activeLinkStyle} className="brand-link">
-          <img src={logo} alt="Logo" className="brand-logo" />
-        </Link>
-        <ul>
-          <li>
-            <Link to="/about/" activeStyle={activeLinkStyle}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact/" activeStyle={activeLinkStyle}>
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </Nav>
-    </Header>
+    <MainNav className="mainnav">
+      <MainMenu className="mainMenu">
+        <MainMenuItem className="mainMenuItem">
+          <MainMenuLink to="/about/" activeStyle={activeLinkStyle}>
+            About
+          </MainMenuLink>
+        </MainMenuItem>
+        <MainMenuItem className="mainMenuItem">
+          <MainMenuLink to="/contact/" activeStyle={activeLinkStyle}>
+            Contact
+          </MainMenuLink>
+        </MainMenuItem>
+      </MainMenu>
+    </MainNav>
   )
 }
 

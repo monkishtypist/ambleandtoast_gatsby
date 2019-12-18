@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import PostDetails from './PostDetails'
 
 const Post = styled.li`
-  border: 1px solid ${props => props.theme.colors.secondary};
+  border: 1px solid ${props => props.theme.colors.light};
   border-radius: 0;
   flex: 0 0 100%;
   margin: 0 0 1em 0;
@@ -27,23 +27,24 @@ const Post = styled.li`
     /* background: ${props => props.theme.colors.tertiary}; */
     box-shadow: 0px 0px 12px rgba(0,0,0,.16);
   }
-  a {
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    width: 100%;
-    color: ${props => props.theme.colors.base};
-    text-decoration: none;
-    .gatsby-image-wrapper {
-      padding: 0;
-      height: 240px;
-      @media screen and (min-width: ${props => props.theme.responsive.small}) {
-        height: 300px;
-        // padding-bottom: ${props => (props.featured ? '40%' : '60%')};
-      }
-      @media screen and (min-width: ${props => props.theme.responsive.medium}) {
-        height: 400px;
-      }
+`
+
+const PostLink = styled(Link)`
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  width: 100%;
+  color: ${props => props.theme.colors.dark};
+  text-decoration: none;
+  .gatsby-image-wrapper {
+    padding: 0;
+    height: 240px;
+    @media screen and (min-width: ${props => props.theme.responsive.small}) {
+      height: 300px;
+      // padding-bottom: ${props => (props.featured ? '40%' : '60%')};
+    }
+    @media screen and (min-width: ${props => props.theme.responsive.medium}) {
+      height: 400px;
     }
   }
 `
@@ -80,7 +81,7 @@ const Card = ({
 }) => {
   return (
     <Post featured={props.featured}>
-      <Link to={`/${slug}/`}>
+      <PostLink to={`/${slug}/`}>
         <Img fluid={heroImage.fluid} backgroundColor={'#eeeeee'} />
         <CardBody>
           <Title>{title}</Title>
@@ -94,7 +95,7 @@ const Card = ({
             }}
           />
         </CardBody>
-      </Link>
+      </PostLink>
     </Post>
   )
 }

@@ -5,7 +5,8 @@ import Layout from '../components/Layout'
 import CardList from '../components/CardList'
 import Card from '../components/Card'
 import Helmet from 'react-helmet'
-import Container from '../components/Container'
+import Main from '../components/blocks/Main'
+import Container from '../components/blocks/Container'
 import Pagination from '../components/Pagination'
 import SEO from '../components/SEO'
 import config from '../utils/siteConfig'
@@ -16,14 +17,6 @@ const Index = ({ data, pageContext }) => {
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
 
-  const Container = styled.section`
-    margin: 0 auto 2rem;
-    max-width: ${props => props.theme.sizes.maxWidth};
-    padding: 1.5rem 1.5rem;
-    flex-grow: 1;
-    width: 100%;
-  `
-
   return (
     <Layout>
       <SEO />
@@ -32,26 +25,28 @@ const Index = ({ data, pageContext }) => {
           <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
         </Helmet>
       )}
-      <Container>
-        {isFirstPage ? (
-          <>
-            <CardList featured>
-              <Card {...featuredPost} featured />
-            </CardList>
+      <Main>
+        <Container>
+          {isFirstPage ? (
+            <>
+              <CardList featured>
+                <Card {...featuredPost} featured />
+              </CardList>
+              <CardList>
+                {posts.slice(1).map(({ node: post }) => (
+                  <Card key={post.id} {...post} />
+                ))}
+              </CardList>
+            </>
+          ) : (
             <CardList>
-              {posts.slice(1).map(({ node: post }) => (
+              {posts.map(({ node: post }) => (
                 <Card key={post.id} {...post} />
               ))}
             </CardList>
-          </>
-        ) : (
-          <CardList>
-            {posts.map(({ node: post }) => (
-              <Card key={post.id} {...post} />
-            ))}
-          </CardList>
-        )}
-      </Container>
+          )}
+        </Container>
+      </Main>
       <Pagination context={pageContext} />
     </Layout>
   )
