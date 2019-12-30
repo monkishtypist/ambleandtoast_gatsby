@@ -1,6 +1,34 @@
 const config = require('./src/utils/siteConfig')
 const path = require(`path`)
 
+exports.createSchemaCustomization = ({ actions, schema, getNode }) => {
+  const utc = new Date().toUTCString()
+  actions.createTypes([
+    schema.buildObjectType({
+      name: 'ContentfulPost',
+      interfaces: ['Node'],
+      fields: {
+        isFuture: {
+          type: 'Boolean!',
+          resolve: source => new Date(source.publishDate) > new Date(utc),
+        },
+      },
+    }),
+    schema.buildObjectType({
+      name: 'ContentfulAuthor',
+      interfaces: ['Node'],
+      fields: {
+        slug: {
+          type: 'String!',
+          resolve(source) {
+            return source.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '')
+          },
+        },
+      },
+    }),
+  ])
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
@@ -8,8 +36,9 @@ exports.createPages = ({ graphql, actions }) => {
     graphql(`
       {
         allContentfulPost(
+          filter: { isFuture: { eq: false } }
           sort: { fields: [publishDate], order: DESC }
-          limit: 10000
+          limit: 5000
         ) {
           edges {
             node {
@@ -139,5 +168,33 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([loadPosts, loadTags, loadPages])
+  const loadAuthors = new Promise((resolve, reject) => {
+    graphql(`
+      {
+        allContentfulAuthor {
+          edges {
+            node {
+              name
+              slug
+            }
+          }
+        }
+      }
+    `).then(result => {
+      const pages = result.data.allContentfulAuthor.edges
+      pages.map(({ node }) => {
+        createPage({
+          path: `authors/${node.slug}/`,
+          component: path.resolve(`./src/templates/author.js`),
+          context: {
+            name: node.name,
+            slug: node.slug,
+          },
+        })
+      })
+      resolve()
+    })
+  })
+
+  return Promise.all([loadPosts, loadTags, loadPages, loadAuthors])
 }

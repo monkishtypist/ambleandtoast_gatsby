@@ -55,6 +55,7 @@ const Index = ({ data, pageContext }) => {
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
     allContentfulPost(
+      filter: { isFuture: { eq: false } }
       sort: { fields: [publishDate], order: DESC }
       limit: $limit
       skip: $skip
