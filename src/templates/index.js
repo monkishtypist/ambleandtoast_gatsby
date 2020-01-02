@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import CardList from '../components/CardList'
-import Card from '../components/Card'
+import SEO from '../components/SEO'
 import Helmet from 'react-helmet'
 import Main from '../components/blocks/Main'
+import HomeHero from '../components/HomeHero'
 import Container from '../components/blocks/Container'
+import CardList from '../components/CardList'
+import Card from '../components/Card'
 import Pagination from '../components/Pagination'
-import SEO from '../components/SEO'
 import config from '../utils/siteConfig'
 
 const Index = ({ data, pageContext }) => {
@@ -26,26 +27,26 @@ const Index = ({ data, pageContext }) => {
         </Helmet>
       )}
       <Main>
-        <Container>
-          {isFirstPage ? (
-            <>
-              <CardList featured>
-                <Card {...featuredPost} featured />
-              </CardList>
+        {isFirstPage ? (
+          <>
+            <HomeHero {...featuredPost} />
+            <Container>
               <CardList>
                 {posts.slice(1).map(({ node: post }) => (
                   <Card key={post.id} {...post} />
                 ))}
               </CardList>
-            </>
-          ) : (
+            </Container>
+          </>
+        ) : (
+          <Container>
             <CardList>
               {posts.map(({ node: post }) => (
                 <Card key={post.id} {...post} />
               ))}
             </CardList>
-          )}
-        </Container>
+          </Container>
+        )}
       </Main>
       <Pagination context={pageContext} />
     </Layout>

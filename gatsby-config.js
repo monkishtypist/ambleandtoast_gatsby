@@ -105,22 +105,22 @@ module.exports = {
           return ret
         },
         query: `
-    {
-      site {
-        siteMetadata {
-          rssMetadata {
-            site_url
-            feed_url
-            title
-            description
-            image_url
-            author
-            copyright
+          {
+            site {
+              siteMetadata {
+                rssMetadata {
+                  site_url
+                  feed_url
+                  title
+                  description
+                  image_url
+                  author
+                  copyright
+                }
+              }
+            }
           }
-        }
-      }
-    }
-  `,
+        `,
         feeds: [
           {
             serialize(ctx) {

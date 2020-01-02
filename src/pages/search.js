@@ -1,13 +1,13 @@
 import React from 'react'
 import { useStaticQuery, Link, graphql } from "gatsby"
-import Helmet from 'react-helmet'
-import config from '../utils/siteConfig'
 import Layout from '../components/Layout'
+import SEO from '../components/SEO'
+import Helmet from 'react-helmet'
 import Main from '../components/blocks/Main'
 import Container from '../components/blocks/Container'
 import PageTitle from '../components/PageTitle'
-import SEO from '../components/SEO'
 import Search from '../components/Search'
+import config from '../utils/siteConfig'
 
 const SearchPage = ({ data }) => {
   const postNode = {
@@ -29,7 +29,6 @@ const SearchPage = ({ data }) => {
         <title>{`Search - ${config.siteTitle}`}</title>
       </Helmet>
       <SEO postNode={postNode} pagePath="contact" customTitle />
-
       <Main>
         <Container>
           <PageTitle>Search</PageTitle>

@@ -75,11 +75,6 @@ const Card = ({
   title,
   publishDate,
   body,
-  body: {
-    childMarkdownRemark: {
-      timeToRead
-    }
-  },
   ...props
 }) => {
   return (
@@ -90,7 +85,6 @@ const Card = ({
           <Title>{title}</Title>
           <PostDetails
             date={publishDate}
-            timeToRead={timeToRead}
           />
           <Excerpt
             dangerouslySetInnerHTML={{

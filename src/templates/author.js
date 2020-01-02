@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
+import Header from '../components/Header'
 import config from '../utils/siteConfig'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
@@ -30,7 +31,7 @@ const AuthorTemplate = ({ data }) => {
       <Helmet>
         <title>{`${name} - ${config.siteTitle}`}</title>
       </Helmet>
-
+      <Header />
       <Main>
         <h1>{`${name}`}</h1>
         <Container>

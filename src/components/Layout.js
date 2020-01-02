@@ -5,11 +5,11 @@ import Helmet from 'react-helmet'
 import favicon from '../images/favicon.png'
 import theme from '../styles/theme'
 import GlobalStyle from '../styles/global'
-import config from '../utils/siteConfig'
 import Header from '../components/Header'
+import config from '../utils/siteConfig'
 import Footer from '../components/Footer'
 
-const Template = ({ children }) => {
+const Layout = ({ children }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -33,7 +33,6 @@ const Template = ({ children }) => {
         <link rel="icon" href={favicon} />
       </Helmet>
       <GlobalStyle theme={theme} />
-
       <ThemeProvider theme={theme}>
         <>
           <Header />
@@ -45,4 +44,4 @@ const Template = ({ children }) => {
   )
 }
 
-export default Template
+export default Layout

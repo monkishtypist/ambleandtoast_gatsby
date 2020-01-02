@@ -7,7 +7,12 @@ import logo from '../images/website-logo-white.png'
 
 const Wrapper = styled.header`
   background: ${props => props.theme.colors.black};
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  z-index: 1;
 `
 
 const NavContainer = styled(Container)`
