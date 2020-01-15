@@ -196,5 +196,5 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([loadPosts, loadTags, loadPages, loadAuthors])
+  return Promise.all([loadPosts, loadTags, loadPages])
 }
