@@ -5,7 +5,6 @@ import config from '../utils/siteConfig'
 import styled from 'styled-components'
 import Layout from '../components/Layout'
 import Main from '../components/blocks/Main'
-import PostBody from '../components/PostBody'
 import SEO from '../components/SEO'
 
 const Container = styled.div`
@@ -17,13 +16,13 @@ const Container = styled.div`
   width: 100%;
 `
 
+const Body = styled.div``
+
 const AuthorTemplate = ({ data }) => {
   const {
     name,
-    slug,
     biography
   } = data.contentfulAuthor
-  const postNode = data.contentfulAuthor
 
   return (
     <Layout>
@@ -32,9 +31,11 @@ const AuthorTemplate = ({ data }) => {
       </Helmet>
 
       <Main>
-        <h1>{`${name}`}</h1>
         <Container>
-          <PostBody body={biography} />
+        <h1>{`${name}`}</h1>
+          {typeof biography === 'object' && biography !== null &&
+            <Body dangerouslySetInnerHTML={{ __html: biography.childMarkdownRemark.html }} />
+          }
         </Container>
       </Main>
     </Layout>
@@ -50,9 +51,7 @@ export const query = graphql`
       instagramUsername
       biography {
         childMarkdownRemark {
-          timeToRead
           html
-          excerpt(pruneLength: 320)
         }
       }
     }

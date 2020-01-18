@@ -1,21 +1,8 @@
 const config = require('./src/utils/siteConfig')
-let contentfulConfig
-
-try {
-  contentfulConfig = require('./.contentful')
-} catch (e) {
-  contentfulConfig = {
-    production: {
-      spaceId: process.env.SPACE_ID,
-      accessToken: process.env.ACCESS_TOKEN,
-    },
-  }
-} finally {
-  const { spaceId, accessToken } = contentfulConfig.production
-  if (!spaceId || !accessToken) {
-    throw new Error('Contentful space ID and access token need to be provided.')
-  }
-}
+const activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || "development"
+require("dotenv").config({
+  path: `.env.${activeEnv}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -34,8 +21,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: contentfulConfig.production.spaceId,
-        accessToken: contentfulConfig.production.accessToken,
+        spaceId: process.env.GATSBY_CONTENTFUL_SPACE_ID,
+        accessToken: process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: process.env.GATSBY_CONTENTFUL_DOWNLOAD_LOCAL,
       },
     },
     {
@@ -66,13 +54,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-catch-links`,
-    {
-      resolve: 'gatsby-source-contentful',
-      options:
-        process.env.NODE_ENV === 'development'
-          ? contentfulConfig.development
-          : contentfulConfig.production,
-    },
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {
@@ -105,22 +86,22 @@ module.exports = {
           return ret
         },
         query: `
-    {
-      site {
-        siteMetadata {
-          rssMetadata {
-            site_url
-            feed_url
-            title
-            description
-            image_url
-            author
-            copyright
+          {
+            site {
+              siteMetadata {
+                rssMetadata {
+                  site_url
+                  feed_url
+                  title
+                  description
+                  image_url
+                  author
+                  copyright
+                }
+              }
+            }
           }
-        }
-      }
-    }
-  `,
+        `,
         feeds: [
           {
             serialize(ctx) {
@@ -141,23 +122,23 @@ module.exports = {
             },
             query: `
               {
-            allContentfulPost(limit: 1000, sort: {fields: [publishDate], order: DESC}) {
-               edges {
-                 node {
-                   title
-                   slug
-                   publishDate(formatString: "MMMM DD, YYYY")
-                   body {
-                     childMarkdownRemark {
-                       html
-                       excerpt(pruneLength: 80)
-                     }
-                   }
-                 }
-               }
-             }
-           }
-      `,
+                allContentfulPost(limit: 1000, sort: {fields: [publishDate], order: DESC}) {
+                  edges {
+                    node {
+                      title
+                      slug
+                      publishDate(formatString: "MMMM DD, YYYY")
+                      body {
+                        childMarkdownRemark {
+                          html
+                          excerpt(pruneLength: 80)
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `,
             output: '/rss.xml',
           },
         ],

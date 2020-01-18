@@ -88,7 +88,7 @@ exports.createPages = ({ graphql, actions }) => {
         const prev = i === 0 ? null : posts[i - 1].node
         const next = i === posts.length - 1 ? null : posts[i + 1].node
         createPage({
-          path: `${edge.node.slug}/`,
+          path: `/${edge.node.slug}/`,
           component: path.resolve(`./src/templates/post.js`),
           context: {
             slug: edge.node.slug,
@@ -182,13 +182,13 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const pages = result.data.allContentfulAuthor.edges
-      pages.map(({ node }) => {
+      pages.map(({ node: page }) => {
         createPage({
-          path: `authors/${node.slug}/`,
+          path: `/authors/${page.slug}/`,
           component: path.resolve(`./src/templates/author.js`),
           context: {
-            name: node.name,
-            slug: node.slug,
+            name: page.name,
+            slug: page.slug,
           },
         })
       })

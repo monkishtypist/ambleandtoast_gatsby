@@ -19,11 +19,10 @@ const Form = styled.form`
   textarea {
     font-family: inherit;
     font-size: inherit;
-    border: none;
     outline: none;
     background: ${props => props.theme.colors.tertiary};
     color: ${props => props.theme.colors.base};
-    border-radius: 2px;
+    border-radius: 0px;
     padding: 1em;
     &::-webkit-input-placeholder {
       color: gray;
@@ -59,7 +58,10 @@ const Form = styled.form`
   }
 `
 
-const Name = styled.input`
+const Input = styled.input`
+  border: none;
+  border-bottom: 1px solid ${props => props.theme.colors.highlight};
+  border-radius: 0;
   margin: 0 0 1em 0;
   width: 100%;
   @media (min-width: ${props => props.theme.responsive.small}) {
@@ -67,15 +69,16 @@ const Name = styled.input`
   }
 `
 
-const Email = styled.input`
-  margin: 0 0 1em 0;
-  width: 100%;
-  @media (min-width: ${props => props.theme.responsive.small}) {
-    width: 49%;
-  }
+const Name = styled(Input)`
+`
+
+const Email = styled(Input)`
 `
 
 const Message = styled.textarea`
+  border: none;
+  border-bottom: 1px solid ${props => props.theme.colors.highlight};
+  border-radius: 0;
   width: 100%;
   margin: 0 0 1em 0;
   line-height: 1.6;
